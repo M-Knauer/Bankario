@@ -1,8 +1,10 @@
 package com.marcelo.main.dto;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 import com.marcelo.main.entities.Pessoa;
+import com.marcelo.main.entities.Telefone;
 
 public record PessoaDTO(
 		Long id, 
@@ -12,7 +14,8 @@ public record PessoaDTO(
 		String email, 
 		String senha,
 		EnderecoDTO endereco,
-		ContaCorrenteDTO contaCorrente
+		ContaCorrenteDTO contaCorrente,
+		Set<Telefone> telefones
 		) {
 
 	public PessoaDTO(Pessoa entity) {
@@ -24,7 +27,9 @@ public record PessoaDTO(
 				entity.getEmail(),
 				entity.getSenha(),
 				new EnderecoDTO(entity.getEndereco()),
-				new ContaCorrenteDTO(entity.getContaCorrente())
+				new ContaCorrenteDTO(entity.getContaCorrente()),
+				entity.getTelefones()
 				);
 	}
+	
 }
