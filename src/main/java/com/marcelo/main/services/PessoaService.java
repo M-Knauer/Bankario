@@ -14,8 +14,9 @@ public class PessoaService {
 	private PessoaRepository repo;
 	
 	public PessoaMinDTO buscarPorId(Long id) {
-		var pessoa = repo.buscarPorId(id).orElseThrow(() -> new ResourceNotFoundException("Recurso não encontrado"));
-		PessoaMinDTO dto = new PessoaMinDTO(pessoa);
-		return dto;
+		
+		return repo.buscarPorId(id).orElseThrow(() -> new ResourceNotFoundException("Recurso não encontrado"));
+		
 	}
 }
+

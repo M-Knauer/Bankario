@@ -4,19 +4,19 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import com.marcelo.main.dto.PessoaMinDTO;
 import com.marcelo.main.entities.Pessoa;
-import com.marcelo.main.projections.ClientMinProjection;
 
 public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
 
 
-	@Query(nativeQuery = true, value =  """
-			SELECT name, cpf, email, fixo, celular
-			FROM tb_client c 
-			INNER JOIN tb_telefone t ON c.id = t.client_id 
-			WHERE c.id = :id
-			""")
-	Optional<ClientMinProjection> buscarPorId(Long id);
+	@Query("SELECT c "
+            + "FROM Pessoa c "
+            + "LEFT JOIN FETCH c.telefones t "
+            + "WHERE c.id = :id")
+    Optional<PessoaMinDTO> buscarPorId(@Param("id") Long id);
+
+
 }

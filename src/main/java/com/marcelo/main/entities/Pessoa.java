@@ -5,10 +5,8 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -31,8 +29,7 @@ public class Pessoa implements Serializable {
 	private String email;
 	private String senha;
 	
-	@OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
-	@JsonManagedReference
+	@OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
 	private Set<Telefone> telefones = new HashSet<>();
 	
 	@OneToOne()

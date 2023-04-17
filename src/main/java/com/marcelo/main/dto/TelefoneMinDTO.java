@@ -1,7 +1,6 @@
 package com.marcelo.main.dto;
 
 import com.marcelo.main.entities.Telefone;
-import com.marcelo.main.projections.TelefoneMinProjection;
 
 public record TelefoneMinDTO(
 		
@@ -17,10 +16,4 @@ public record TelefoneMinDTO(
 				);
 	}
 	
-	public TelefoneMinDTO(TelefoneMinProjection entity) {
-		this(
-				entity.getFixo(),
-				entity.getCelular()
-				);
-	}
 }
