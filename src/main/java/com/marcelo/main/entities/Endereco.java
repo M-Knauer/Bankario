@@ -2,6 +2,8 @@ package com.marcelo.main.entities;
 
 import java.io.Serializable;
 
+import com.marcelo.main.dto.EnderecoDTO;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,6 +19,7 @@ public class Endereco implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	private String uf;
 	private String localidade;
 	private String bairro;
@@ -42,6 +45,16 @@ public class Endereco implements Serializable {
 		this.numero = numero;
 		this.cep = cep;
 		this.complemento = complemento;
+	}
+	
+	public Endereco(EnderecoDTO dto) {
+		uf = dto.uf();
+		localidade = dto.localidade();
+		bairro = dto.bairro();
+		logradouro = dto.logradouro();
+		numero = dto.numero();
+		cep = dto.cep();
+		complemento = dto.complemento();
 	}
 
 	public Long getId() {

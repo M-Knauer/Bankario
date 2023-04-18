@@ -1,4 +1,14 @@
-INSERT INTO TB_ENDERECO (ID, BAIRRO, CEP, COMPLEMENTO, LOCALIDADE, LOGRADOURO, NUMERO, UF) VALUES (1, 'Bairro A', '12345-678', 'Apto 101', 'Localidade A', 'Rua A', '123', 'SP'),(2, 'Bairro B', '98765-432', 'Casa 2', 'Localidade B', 'Avenida B', '456', 'RJ'),(3, 'Bairro C', '56789-012', 'Bloco C', 'Localidade C', 'Rua C', '789', 'MG'),(4, 'Bairro D', '21098-765', 'Casa 4', 'Localidade D', 'Avenida D', '987', 'BA'),(5, 'Bairro E', '54321-876', 'Apto 505', 'Localidade E', 'Rua E', '654', 'SC'),(6, 'Bairro F', '87654-321', 'Bloco F', 'Localidade F', 'Avenida F', '321', 'PR'),(7, 'Bairro G', '32145-678', 'Casa 3', 'Localidade G', 'Rua G', '987', 'RS'),(8, 'Bairro H', '78901-234', 'Apto 202', 'Localidade H', 'Avenida H', '654', 'PE'),(9, 'Bairro I', '23456-789', 'Bloco D', 'Localidade I', 'Rua I', '321', 'CE'),(10, 'Bairro J', '67890-123', 'Casa 1', 'Localidade J', 'Avenida J', '987', 'PB');
+-- Inserir registros um por um
+INSERT INTO TB_ENDERECO (BAIRRO, CEP, COMPLEMENTO, LOCALIDADE, LOGRADOURO, NUMERO, UF) VALUES ('Bairro A', '12345-678', 'Apto 101', 'Localidade A', 'Rua A', '123', 'SP');
+INSERT INTO TB_ENDERECO (BAIRRO, CEP, COMPLEMENTO, LOCALIDADE, LOGRADOURO, NUMERO, UF) VALUES ('Bairro B', '98765-432', 'Casa 2', 'Localidade B', 'Avenida B', '456', 'RJ');
+INSERT INTO TB_ENDERECO (BAIRRO, CEP, COMPLEMENTO, LOCALIDADE, LOGRADOURO, NUMERO, UF) VALUES ('Bairro C', '56789-012', 'Bloco C', 'Localidade C', 'Rua C', '789', 'MG');
+INSERT INTO TB_ENDERECO (BAIRRO, CEP, COMPLEMENTO, LOCALIDADE, LOGRADOURO, NUMERO, UF) VALUES ('Bairro D', '21098-765', 'Casa 4', 'Localidade D', 'Avenida D', '987', 'BA');
+INSERT INTO TB_ENDERECO (BAIRRO, CEP, COMPLEMENTO, LOCALIDADE, LOGRADOURO, NUMERO, UF) VALUES ('Bairro E', '54321-876', 'Apto 505', 'Localidade E', 'Rua E', '654', 'SC');
+INSERT INTO TB_ENDERECO (BAIRRO, CEP, COMPLEMENTO, LOCALIDADE, LOGRADOURO, NUMERO, UF) VALUES ('Bairro F', '87654-321', 'Bloco F', 'Localidade F', 'Avenida F', '321', 'PR');
+INSERT INTO TB_ENDERECO (BAIRRO, CEP, COMPLEMENTO, LOCALIDADE, LOGRADOURO, NUMERO, UF) VALUES ('Bairro G', '32145-678', 'Casa 3', 'Localidade G', 'Rua G', '987', 'RS');
+INSERT INTO TB_ENDERECO (BAIRRO, CEP, COMPLEMENTO, LOCALIDADE, LOGRADOURO, NUMERO, UF) VALUES ('Bairro H', '78901-234', 'Apto 202', 'Localidade H', 'Avenida H', '654', 'PE');
+INSERT INTO TB_ENDERECO (BAIRRO, CEP, COMPLEMENTO, LOCALIDADE, LOGRADOURO, NUMERO, UF) VALUES ('Bairro I', '23456-789', 'Bloco D', 'Localidade I', 'Rua I', '321', 'CE');
+INSERT INTO TB_ENDERECO (BAIRRO, CEP, COMPLEMENTO, LOCALIDADE, LOGRADOURO, NUMERO, UF) VALUES ('Bairro J', '67890-123', 'Casa 1', 'Localidade J', 'Avenida J', '987', 'PB');
 
 INSERT INTO TB_CONTA_CORRENTE (AGENCIA, CONTA_CORRENTE, SALDO) VALUES ('001', '11111-1', 1000.0);
 INSERT INTO TB_CONTA_CORRENTE (AGENCIA, CONTA_CORRENTE, SALDO) VALUES ('002', '22222-2', 2000.0);

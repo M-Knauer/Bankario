@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.marcelo.main.dto.PessoaDTO;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,11 +34,11 @@ public class Pessoa implements Serializable {
 	@OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
 	private Set<Telefone> telefones = new HashSet<>();
 	
-	@OneToOne()
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "endereco_id")
 	private Endereco endereco;
 	
-	@OneToOne()
+	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "conta_corrente_id")
 	private ContaCorrente contaCorrente;
 	
@@ -53,6 +55,16 @@ public class Pessoa implements Serializable {
 		this.senha = senha;
 		this.endereco = endereco;
 		this.contaCorrente = contaCorrente;
+	}
+	
+	public Pessoa(PessoaDTO dto) {
+		name = dto.name();
+		cpf = dto.cpf();
+		birthDate = dto.birthDate();
+		email = dto.email();
+		senha = dto.senha();
+		endereco = new Endereco(dto.endereco());
+		//contaCorrente = new ContaCorrente(dto.contaCorrente());
 	}
 
 	public Long getId() {

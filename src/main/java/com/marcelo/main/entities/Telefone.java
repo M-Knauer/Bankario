@@ -2,6 +2,9 @@ package com.marcelo.main.entities;
 
 import java.io.Serializable;
 
+import com.marcelo.main.dto.TelefoneDTO;
+import com.marcelo.main.dto.TelefoneMinDTO;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,7 +24,7 @@ public class Telefone implements Serializable{
 	private String fixo;
 	private String celular;
 	
-	@ManyToOne
+	@ManyToOne()
 	@JoinColumn(name = "client_id")
 	private Pessoa client;
 	
@@ -34,6 +37,19 @@ public class Telefone implements Serializable{
 		this.fixo = fixo;
 		this.celular = celular;
 		this.client = client;
+	}
+	
+	public Telefone(TelefoneDTO dto) {
+		id = dto.id();
+		fixo = dto.fixo();
+		celular = dto.celular();
+		client = new Pessoa(dto.client());
+	}
+	
+	public Telefone(TelefoneMinDTO dto) {
+		fixo = dto.fixo();
+		celular = dto.celular();
+		
 	}
 
 	public Long getId() {

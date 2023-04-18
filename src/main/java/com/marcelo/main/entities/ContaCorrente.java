@@ -2,6 +2,8 @@ package com.marcelo.main.entities;
 
 import java.io.Serializable;
 
+import com.marcelo.main.dto.ContaCorrenteDTO;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -29,11 +31,16 @@ public class ContaCorrente implements Serializable{
 	}
 
 	public ContaCorrente(Long id, String contaCorrente, String agencia, Double saldo) {
-		super();
 		this.id = id;
 		this.contaCorrente = contaCorrente;
 		this.agencia = agencia;
 		this.saldo = saldo;
+	}
+	
+	public ContaCorrente(ContaCorrenteDTO dto) {
+		contaCorrente = dto.contaCorrente();
+		agencia = dto.agencia();
+		saldo = dto.saldo();
 	}
 
 	public Long getId() {

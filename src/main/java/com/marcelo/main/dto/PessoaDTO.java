@@ -1,10 +1,9 @@
 package com.marcelo.main.dto;
 
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.List;
 
 import com.marcelo.main.entities.Pessoa;
-import com.marcelo.main.entities.Telefone;
 
 public record PessoaDTO(
 		Long id, 
@@ -15,7 +14,7 @@ public record PessoaDTO(
 		String senha,
 		EnderecoDTO endereco,
 		ContaCorrenteDTO contaCorrente,
-		Set<Telefone> telefones
+		List<TelefoneMinDTO> telefones
 		) {
 
 	public PessoaDTO(Pessoa entity) {
@@ -28,7 +27,7 @@ public record PessoaDTO(
 				entity.getSenha(),
 				new EnderecoDTO(entity.getEndereco()),
 				new ContaCorrenteDTO(entity.getContaCorrente()),
-				entity.getTelefones()
+				entity.getTelefones().stream().map(TelefoneMinDTO::new).toList()
 				);
 	}
 	
