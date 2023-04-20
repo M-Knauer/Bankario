@@ -17,6 +17,7 @@ public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
             + "LEFT JOIN FETCH c.telefones t "
             + "WHERE c.id = :id")
     Optional<PessoaMinDTO> buscarPorId(@Param("id") Long id);
+	
 
 
 }

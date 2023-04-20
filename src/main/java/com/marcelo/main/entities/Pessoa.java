@@ -1,6 +1,5 @@
 package com.marcelo.main.entities;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,8 +18,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_client")
-public class Pessoa implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class Pessoa {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,7 +27,6 @@ public class Pessoa implements Serializable {
 	private String cpf;
 	private LocalDate birthDate;
 	private String email;
-	private String senha;
 	
 	@OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
 	private Set<Telefone> telefones = new HashSet<>();
@@ -42,27 +39,31 @@ public class Pessoa implements Serializable {
 	@JoinColumn(name = "conta_corrente_id")
 	private ContaCorrente contaCorrente;
 	
+	@OneToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "user_login_id")
+	private User user;
+	
 	public Pessoa() {
 		
 	}
-
-	public Pessoa(Long id, String name, String cpf, LocalDate birthDate, String email, String senha, Endereco endereco, ContaCorrente contaCorrente) {
+	
+	public Pessoa(Long id, String name, String cpf, LocalDate birthDate, String email, Endereco endereco,
+			ContaCorrente contaCorrente, User user) {
 		this.id = id;
 		this.name = name;
 		this.cpf = cpf;
 		this.birthDate = birthDate;
 		this.email = email;
-		this.senha = senha;
 		this.endereco = endereco;
 		this.contaCorrente = contaCorrente;
+		this.user = user;
 	}
-	
+
 	public Pessoa(PessoaDTO dto) {
 		name = dto.name();
 		cpf = dto.cpf();
 		birthDate = dto.birthDate();
 		email = dto.email();
-		senha = dto.senha();
 		endereco = new Endereco(dto.endereco());
 		//contaCorrente = new ContaCorrente(dto.contaCorrente());
 	}
@@ -107,14 +108,6 @@ public class Pessoa implements Serializable {
 		this.email = email;
 	}
 
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
 	public Set<Telefone> getTelefones() {
 		return telefones;
 	}
@@ -138,6 +131,13 @@ public class Pessoa implements Serializable {
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
-	
+
+	public User getContaLogin() {
+		return user;
+	}
+
+	public void setContaLogin(User user) {
+		this.user = user;
+	}
 	
 }

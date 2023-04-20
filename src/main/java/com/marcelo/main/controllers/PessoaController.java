@@ -29,6 +29,12 @@ public class PessoaController {
 		return ResponseEntity.ok().body(service.buscarPorId(id));
 	}
 	
+	
+	@PutMapping("{id}")
+	public ResponseEntity<PessoaDTO> update(@PathVariable Long id, @RequestBody PessoaDTO dto) {
+		return ResponseEntity.ok().body(service.update(id, dto));
+	}
+	
 	@PostMapping
 	public ResponseEntity<PessoaDTO> cadastar(@RequestBody PessoaDTO dto) {
 		dto = service.cadastrar(dto);
@@ -39,10 +45,5 @@ public class PessoaController {
                 .toUri();
         
 		return ResponseEntity.created(uri).body(dto);
-	}
-	
-	@PutMapping("{id}")
-	public ResponseEntity<PessoaDTO> update(@PathVariable Long id, @RequestBody PessoaDTO dto) {
-		return ResponseEntity.ok().body(service.update(id, dto));
 	}
 }

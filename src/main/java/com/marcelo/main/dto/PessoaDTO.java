@@ -11,9 +11,9 @@ public record PessoaDTO(
 		String cpf, 
 		LocalDate birthDate, 
 		String email, 
-		String senha,
 		EnderecoDTO endereco,
 		ContaCorrenteDTO contaCorrente,
+		UserDTO user,
 		List<TelefoneMinDTO> telefones
 		) {
 
@@ -24,9 +24,9 @@ public record PessoaDTO(
 				entity.getCpf(),
 				entity.getBirthDate(),
 				entity.getEmail(),
-				entity.getSenha(),
 				new EnderecoDTO(entity.getEndereco()),
 				new ContaCorrenteDTO(entity.getContaCorrente()),
+				new UserDTO(entity.getContaLogin()),
 				entity.getTelefones().stream().map(TelefoneMinDTO::new).toList()
 				);
 	}
