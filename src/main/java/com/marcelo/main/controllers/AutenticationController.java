@@ -17,7 +17,6 @@ import com.marcelo.main.dto.TokenJwtDTO;
 import com.marcelo.main.dto.UserDTO;
 import com.marcelo.main.entities.User;
 import com.marcelo.main.security.config.TokenService;
-import com.marcelo.main.services.AutenticationService;
 import com.marcelo.main.services.PessoaService;
 
 @RestController

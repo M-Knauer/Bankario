@@ -19,6 +19,7 @@ import com.marcelo.main.entities.Telefone;
 import com.marcelo.main.entities.User;
 import com.marcelo.main.repositories.EnderecoRepository;
 import com.marcelo.main.repositories.PessoaRepository;
+import com.marcelo.main.repositories.UserRepository;
 import com.marcelo.main.services.exceptions.ResourceNotFoundException;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -31,6 +32,9 @@ public class PessoaService {
 	
 	@Autowired
 	private EnderecoRepository enderecoRepository;
+	
+	@Autowired
+	private UserRepository userRepository;
 	
 	@Autowired
 	PasswordEncoder encoder;
@@ -98,6 +102,11 @@ public class PessoaService {
 		// user
 		User user = new User();
 		if (entity.getContaLogin() == null) {
+			user.setLogin(dto.cpf());
+			setUser(dto, user);
+		}
+		else {
+			user = userRepository.getReferenceById(entity.getContaLogin().getId());
 			setUser(dto, user);
 		}
 		
@@ -135,7 +144,6 @@ public class PessoaService {
 	}
 	
 	private void setUser(PessoaDTO dto, User entity) {
-		entity.setLogin(dto.cpf());
 		entity.setPassword(encoder.encode(dto.user().password()));
 	}
 	

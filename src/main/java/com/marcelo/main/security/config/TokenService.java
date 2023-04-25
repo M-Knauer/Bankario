@@ -11,6 +11,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.auth0.jwt.interfaces.Claim;
 import com.marcelo.main.entities.User;
 
 @Service
@@ -48,6 +49,20 @@ public class TokenService {
 		     
 		} catch (JWTVerificationException exception) {
 		    throw new RuntimeException("Token JWT inválido ou expirado");
+		}
+	}
+	public Long getIdFromToken(String tokenJwt) {
+		try {
+			Algorithm algorithm = Algorithm.HMAC256(secret);
+			Claim id = JWT.require(algorithm)
+					.withIssuer("Bankario")
+					.build()
+					.verify(tokenJwt)
+					.getClaim("id");
+			return id.asLong();
+			
+		} catch (JWTVerificationException exception) {
+			throw new RuntimeException("Token JWT inválido ou expirado");
 		}
 	}
 }

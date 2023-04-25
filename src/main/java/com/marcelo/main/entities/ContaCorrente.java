@@ -73,4 +73,8 @@ public class ContaCorrente implements Serializable{
 		saldo += (qtd > 0 ? qtd : 0);
 	}
 	
+	public void sacar(Double amount) {
+		saldo -= (saldo >= amount ? amount : 0);
+	}
+	
 }

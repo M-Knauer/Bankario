@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.marcelo.main.dto.UserDTO;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -68,6 +69,14 @@ public class User implements UserDetails {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public Pessoa getClient() {
+		return client;
+	}
+
+	public void setClient(Pessoa client) {
+		this.client = client;
 	}
 
 	@Override
