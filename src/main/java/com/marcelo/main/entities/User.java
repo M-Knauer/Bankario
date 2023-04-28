@@ -10,7 +10,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.marcelo.main.dto.UserDTO;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;

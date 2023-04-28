@@ -65,9 +65,9 @@ public class Pessoa {
 		birthDate = dto.birthDate();
 		email = dto.email();
 		endereco = new Endereco(dto.endereco());
-		//contaCorrente = new ContaCorrente(dto.contaCorrente());
 	}
-
+	
+	
 	public Long getId() {
 		return id;
 	}

@@ -38,9 +38,11 @@ public class ContaCorrente implements Serializable{
 	}
 	
 	public ContaCorrente(ContaCorrenteDTO dto) {
+		id = dto.id();
 		contaCorrente = dto.contaCorrente();
 		agencia = dto.agencia();
 		saldo = dto.saldo();
+		client = dto.client();
 	}
 
 	public Long getId() {
@@ -69,6 +71,14 @@ public class ContaCorrente implements Serializable{
 		this.saldo = saldo;
 	}
 	
+	public Pessoa getClient() {
+		return client;
+	}
+
+	public void setClient(Pessoa client) {
+		this.client = client;
+	}
+
 	public void depositar(Double qtd) {
 		saldo += (qtd > 0 ? qtd : 0);
 	}

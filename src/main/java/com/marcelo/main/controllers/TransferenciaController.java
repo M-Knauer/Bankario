@@ -23,7 +23,13 @@ public class TransferenciaController {
 	}
 	@PutMapping("/saque")
 	public ResponseEntity<Void> saque(@RequestParam(defaultValue = "0") Double amount) {
-		service.deposito(amount);
+		service.saque(amount);
+		return ResponseEntity.ok().build();
+	}
+	
+	@PutMapping("/pix/cpf")
+	public ResponseEntity<Void> pixCpf(@RequestParam String cpf, @RequestParam(defaultValue = "0") Double amount) {
+		service.pixCpf(cpf, amount);
 		return ResponseEntity.ok().build();
 	}
 }

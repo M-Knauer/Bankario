@@ -4,11 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.marcelo.main.entities.Pessoa;
 import com.marcelo.main.entities.User;
+import com.marcelo.main.repositories.PessoaRepository;
 import com.marcelo.main.repositories.UserRepository;
 import com.marcelo.main.security.config.SecurityFilter;
 import com.marcelo.main.security.config.TokenService;
-import com.marcelo.main.services.exceptions.ResourceNotFoundException;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -27,25 +28,33 @@ public class TransferenciaService {
 	@Autowired
 	private HttpServletRequest request;
 	
+	@Autowired
+	private PessoaRepository pessoaRepository;
+	
 	@Transactional
 	public void deposito(Double amount) {
-		
-		Long id = tokenService.getIdFromToken(token.retriveToken(request));
-		
-		User entity = repo.getReferenceById(id);
+		User entity = retriveUser();
 	
 		entity.getClient().getContaCorrente().depositar(amount);
-		
 	}
 	
 	@Transactional
 	public void saque(Double amount) {
-		
-		Long id = tokenService.getIdFromToken(token.retriveToken(request));
-		
-		User entity = repo.getReferenceById(id);
+		User entity = retriveUser();
 		
 		entity.getClient().getContaCorrente().sacar(amount);
-		
+	}
+
+	@Transactional
+	public void pixCpf(String cpf, Double amount) {
+		User entity = retriveUser();
+		Pessoa dest = pessoaRepository.buscarPorCpf(cpf).get();
+		entity.getClient().getContaCorrente().sacar(amount);
+		dest.getContaCorrente().depositar(amount);
+	}
+	
+	private User retriveUser() {
+		Long id = tokenService.getIdFromToken(token.retriveToken(request));
+		return repo.getReferenceById(id);
 	}
 }
